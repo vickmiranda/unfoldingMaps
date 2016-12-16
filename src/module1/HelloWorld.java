@@ -11,6 +11,7 @@ import de.fhpotsdam.unfolding.providers.Yahoo;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 
+
 /** HelloWorld
   * An application with two maps side-by-side zoomed in on different locations.
   * Author: UC San Diego Coursera Intermediate Programming team
@@ -25,6 +26,11 @@ public class HelloWorld extends PApplet
 
 	// You can ignore this.  It's to keep eclipse from reporting a warning
 	private static final long serialVersionUID = 1L;
+	int[] window_size = {2000, 1200};
+	int[] window_map = {800, 1000};
+	int[] x_y_coordinates = {50, 50};
+	float[] home={18.22f, -95.94f};
+
 
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
@@ -39,7 +45,7 @@ public class HelloWorld extends PApplet
 	UnfoldingMap map2;
 
 	public void setup() {
-		size(1600, 1000, P2D);  // Set up the Applet window to be 800x600
+		size(window_size[0], window_size[1], P2D);  // Set up the Applet window to be 800x600
 		                      // The OPENGL argument indicates to use the 
 		                      // Processing library's 2D drawing
 		                      // You'll learn more about processing in Module 3
@@ -69,7 +75,7 @@ public class HelloWorld extends PApplet
 		// The 6th argument specifies the map provider.  
 		// There are several providers built-in.
 		// Note if you are working offline you must use the MBTilesMapProvider
-		map1 = new UnfoldingMap(this, 50, 50, 600, 800, provider);
+		map1 = new UnfoldingMap(this, x_y_coordinates[0], x_y_coordinates[1], window_map[0], window_map[1], provider);
 
 		// The next line zooms in and centers the map at 
 	    // 32.9 (latitude) and -117.2 (longitude)
@@ -80,8 +86,8 @@ public class HelloWorld extends PApplet
 
 		
 		// TODO: Add code here that creates map2
-		map2 = new UnfoldingMap(this, 750, 50, 600, 800, provider);
-		map2.zoomAndPanTo(zoomLevel, new Location(18.22f, -95.94f));
+		map2 = new UnfoldingMap(this, window_map[0]+x_y_coordinates[0], x_y_coordinates[1], window_map[0], window_map[1], provider);
+		map2.zoomAndPanTo(zoomLevel, new Location(home[0], home[1]));
 		MapUtils.createDefaultEventDispatcher(this, map2);
 		// Then you'll modify draw() below
 
