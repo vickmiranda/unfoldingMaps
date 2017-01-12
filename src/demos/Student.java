@@ -20,7 +20,7 @@ public class Student extends Person
 	public static void main(String[] args)
 	{
 		Person p;
-		p = new Student("Sally");
-		p.status(1);
+		p = new Student("Vicky");
+		p.status(8);
 	}
 }

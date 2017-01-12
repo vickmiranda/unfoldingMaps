@@ -55,14 +55,14 @@ public class EarthquakeCityMap extends PApplet {
 
 
     public void setup() {
-        size(950, 600, OPENGL);
+        size(1200, 800, OPENGL);
 
         map = new UnfoldingMap(
                 this,
-                200,
+                300,
                 50,
-                700,
-                500,
+                800,
+                600,
                 new Microsoft.AerialProvider());
 
         map.zoomToLevel(2);
@@ -88,11 +88,14 @@ public class EarthquakeCityMap extends PApplet {
                 Marker marker = markers.get(i);
                 marker.setColor(color);
                 if (magnitude>5.0){
+
+                    marker.setStrokeColor(color(250, 0, 0));
+                    // cast marker with SimplePointMarker allows us to change property, check
+                    // if there is an easier way
+                    ((SimplePointMarker) marker).setRadius(15);
                     System.out.println(f.getProperties());
                 }
-
             }
-
         }
         map.addMarkers(markers);
         //TODO: Add code here as appropriate
@@ -134,11 +137,39 @@ public class EarthquakeCityMap extends PApplet {
         map.draw();
         addKey();
     }
-    
+
     // helper method to draw key in GUI
     // TODO: Implement this method to draw the key
     private void addKey() {
         // Remember you can use Processing's graphics methods here
+        fill(160);
+        rect(25, 50, 200, 300);
+        textSize(18);
+        fill(0);
+        text("Earthquake key", 30, 80);
+
+        line(25, 110, 200, 110);
+
+        fill(255, 0, 0);
+        ellipse(40, 140, 25, 25);
+        textSize(16);
+        fill(0);
+        text("5.0+ Magnitude", 70, 150);
+
+        fill(255, 255, 0);
+        ellipse(40, 180, 15, 15);
+        textSize(16);
+        fill(0);
+        text("4.0+ Magnitude", 70, 190);
+
+        fill(0, 0, 255);
+        ellipse(40, 220, 10, 10);
+        textSize(16);
+        fill(0);
+        text("Below 4.0", 70, 230);
+
+
+
 
     }
 }

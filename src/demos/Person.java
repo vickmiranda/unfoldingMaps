@@ -26,6 +26,7 @@ public class Person
 
 	public void status( int hr )
 	{
+		// this refers to the the student at run time and so the isAsleep is the method found in the student class
 		if ( this.isAsleep( hr ) )
 			System.out.println( "Now offline: " + this );
 	    else
